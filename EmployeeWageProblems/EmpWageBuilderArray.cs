@@ -21,14 +21,14 @@ namespace EmployeeWageProblems
 
         public void addcompanyEmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
         {
-            companyEmpWageArray[this.numOfCompany] = new CompanyEmpwage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
+            companyEmpWageArrayList.Add(new CompanyEmpwage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth));
             numOfCompany++;
         }
         public void computeEmpWage()
         {
             for (int i = 0; i < numOfCompany; i++)
             {
-                companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(this.companyEmpWageArray[i]));
+                companyEmpWageArrayList[i].setTotalEmpWage(this.computeEmpWage(this.companyEmpWageArrayList[i]));
                 Console.WriteLine(this.companyEmpWageArray[i].toString());
             }
         }
@@ -56,6 +56,8 @@ namespace EmployeeWageProblems
                 }
                 totalEmpHrs += empHrs;
                 Console.WriteLine("Days : " + totalWorkingDays + "Emp Hrs : " + empHrs);
+                int dailyWage = empHrs * companyEmpWage.empRatePerHour;
+                Console.WriteLine("Daily Wage of Employee Is: " +dailyWage);
             }
             return totalEmpHrs * companyEmpWage.empRatePerHour;
         }
